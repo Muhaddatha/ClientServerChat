@@ -7,7 +7,10 @@ package ChatPackage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -16,6 +19,11 @@ import javafx.fxml.Initializable;
  */
 public class ClientFXMLController implements Initializable {
 
+    @FXML
+    private Button sendButton;
+    @FXML
+    private TextField inputTextbox;
+
     /**
      * Initializes the controller class.
      */
@@ -23,5 +31,7 @@ public class ClientFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    
     
 }
