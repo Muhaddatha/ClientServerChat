@@ -5,8 +5,12 @@
  */
 package ChatPackage;
 
+import java.io.IOException;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,15 +29,22 @@ public class ClientFXMLController implements Initializable {
     @FXML
     private TextField inputTextbox;
 
-    boolean debugging = true;
+    static boolean debugging = true;
     /**
      * Initializes the controller class.
      */
+    
+    
+    
+    
+    static String message = "";
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-
+    }
+        
     @FXML
     private void handleButton(ActionEvent event) {
         //1. Check to see if there is a message fto send
@@ -47,15 +58,18 @@ public class ClientFXMLController implements Initializable {
         }
         else{
             //send message to server
-            String message = inputTextbox.getText();
+            message = inputTextbox.getText();
             inputTextbox.clear();
             if(debugging){
                 System.out.println("Sending message (" + message + ") to server");
             }
             
-            
+        
         }
     }
+    
+    
+    
     
     
     

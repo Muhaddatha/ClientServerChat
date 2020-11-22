@@ -5,6 +5,11 @@
  */
 package ChatPackage;
 
+import static ChatPackage.ClientFXMLController.debugging;
+import java.io.IOException;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,7 +33,23 @@ public class Client extends Application {
         
     }
     
-    public static void main(String[] args){
+    
+    
+    public static void main(String[] args)throws IOException{
+        
+        final String SERVER_IP_ADDR = "127.0.0.1";
+        final int SERVER_PORT_NUM = 9080;
+        
+    
+        
+            //client's socket connecting to server
+        if(debugging){
+            System.out.println("Client connecting to server"); 
+        }
+         
+        Socket socket = new Socket(SERVER_IP_ADDR, SERVER_PORT_NUM);
+       
         launch(args);
+        
     }
 }

@@ -18,28 +18,50 @@ import java.util.logging.Logger;
 public class Server {
     
     
-    private static final int PORT_NUM = 9090;
+    private static final int PORT_NUM = 9080;
     static String serverTyping = ">Server: ";
     String client1Typeing = ">Client1: ";
     String client2Typeing = ">Client2: ";
     
     
     
+    
     public static void main(String[] args) throws IOException{
+        
+        boolean debugging = true;
      
         ServerSocket connListener = null;
+        Socket client = null;
         
         try {
             System.out.println(serverTyping + "Getting ready to establish connection...");
             connListener = new ServerSocket(PORT_NUM);
+            client = connListener.accept(); //returns socket object , need to close socket afterwards
             //telling the server where the messages will be coming from
+            
+            if(debugging){
+                if(connListener == null){
+                    System.out.println("Connection listener is null.");
+                }
+                else{
+                    System.out.println("Connection listener is not null.");
+                }
+                
+                if(client == null){
+                    System.out.println("Client is null");
+                }
+                else{
+                    System.out.println("Client is not null");
+                }
+            }
         } catch (IOException ex) {
+            System.out.println(serverTyping + "Encountered error establishing connection with client.");
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         //make connection
-        Socket client = connListener.accept(); //returns socket object , need to close socket afterwards
-        System.out.println(serverTyping + "Connection established with client");
+        
+//        System.out.println(serverTyping + "Connection established with client");
                 
 
         
@@ -49,8 +71,8 @@ public class Server {
         
         
         
-        client.close();
-        connListener.close();
+//        client.close();
+//        connListener.close();
         
     }
     
