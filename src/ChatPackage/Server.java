@@ -5,9 +5,15 @@
  */
 package ChatPackage;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,56 +30,34 @@ public class Server {
     String client2Typeing = ">Client2: ";
     
     
-    
+    //stores cleint threads in an arraylist
+    private static ArrayList<ClientHandler> clients = new ArrayList<>();
+    private static ExecutorService p = Executors.newFixedThreadPool(2); //only handle two clients
     
     public static void main(String[] args) throws IOException{
         
         boolean debugging = true;
      
-        ServerSocket connListener = null;
-        Socket client = null;
         
-        try {
-            System.out.println(serverTyping + "Getting ready to establish connection...");
-            connListener = new ServerSocket(PORT_NUM);
-            client = connListener.accept(); //returns socket object , need to close socket afterwards
-            //telling the server where the messages will be coming from
+        //returns socket object , need to close socket afterwards
+        //telling the server where the messages will be coming from
+        ServerSocket listener = new ServerSocket(PORT_NUM);
+        while(true){
+            System.out.println(serverTyping + "Waiting for client to connect");
+            Socket client = listener.accept();
+            System.out.println(serverTyping + "Connected to client");
+            ClientHandler clientThread = new ClientHandler(client, clients); //passing client socket
+            clients.add(clientThread); //new client added to client thread collection
             
-            if(debugging){
-                if(connListener == null){
-                    System.out.println("Connection listener is null.");
-                }
-                else{
-                    System.out.println("Connection listener is not null.");
-                }
-                
-                if(client == null){
-                    System.out.println("Client is null");
-                }
-                else{
-                    System.out.println("Client is not null");
-                }
-            }
-        } catch (IOException ex) {
-            System.out.println(serverTyping + "Encountered error establishing connection with client.");
-            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            p.execute(clientThread);
         }
         
-        //make connection
-        
-//        System.out.println(serverTyping + "Connection established with client");
-                
-
+        //listen to connections in a loop
         
         
         
         
-        
-        
-        
-//        client.close();
-//        connListener.close();
-        
+ 
     }
     
 }
