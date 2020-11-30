@@ -36,20 +36,6 @@ public class Client extends Application {
     
     
     public static void main(String[] args)throws IOException{
-        
-        final String SERVER_IP_ADDR = "127.0.0.1";
-        final int SERVER_PORT_NUM = 9080;
-        
-    
-        
-            //client's socket connecting to server
-        if(debugging){
-            System.out.println("Client connecting to server"); 
-        }
-         
-        Socket socket = new Socket(SERVER_IP_ADDR, SERVER_PORT_NUM);
-       
         launch(args);
-        
     }
 }

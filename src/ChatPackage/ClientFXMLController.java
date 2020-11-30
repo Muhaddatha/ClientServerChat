@@ -5,7 +5,10 @@
  */
 package ChatPackage;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,19 +33,39 @@ public class ClientFXMLController implements Initializable {
     private TextField inputTextbox;
 
     static boolean debugging = true;
-    /**
-     * Initializes the controller class.
-     */
+   
+    final static String SERVER_IP_ADDR = "127.0.0.1";
+    final static int SERVER_PORT_NUM = 9080;
     
     
-    
-    
+        
+    //client's socket connecting to server
     static String message = "";
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+    }
+    
+    public static void main(String[] args) throws IOException{
+        
+       Socket socket = null;
+        if(debugging){
+            System.out.println("Inside initialize method in the controller.");
+        }
+        try {
+            // TODO
+            socket = new Socket(SERVER_IP_ADDR, SERVER_PORT_NUM);
+            if(debugging){System.out.println("Sucessfully connected to server");}
+        } catch (IOException ex) {
+            Logger.getLogger(ClientFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        BufferedReader input = new BufferedReader (new InputStreamReader(socket.getInputStream()));
+        BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
+        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+        
     }
         
     @FXML
