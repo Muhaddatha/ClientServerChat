@@ -5,7 +5,7 @@
  */
 package ChatPackage;
 
-import static ChatPackage.ClientFXMLController.debugging;
+import static ChatPackage.ClientFXController.debugging;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.logging.Level;
