@@ -18,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 /**
@@ -25,12 +26,14 @@ import javafx.scene.control.TextField;
  *
  * 
  */
-public class ClientFXMLController implements Initializable {
+public class ClientFXMLController implements Initializable, Runnable {
 
     @FXML
     private Button sendButton;
     @FXML
     private TextField inputTextbox;
+//    @FXML
+//    private TextArea messageLogWindow;
 
     static boolean debugging = true;
    
@@ -82,6 +85,8 @@ public class ClientFXMLController implements Initializable {
         else{
             //send message to server
             message = inputTextbox.getText();
+//            messageLogWindow.clear();
+            
             inputTextbox.clear();
             if(debugging){
                 System.out.println("Sending message (" + message + ") to server");
@@ -89,6 +94,11 @@ public class ClientFXMLController implements Initializable {
             
         
         }
+    }
+
+    @Override
+    public void run() {
+        //
     }
     
     
