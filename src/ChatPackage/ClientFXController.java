@@ -42,8 +42,7 @@ public class ClientFXController implements Initializable, Runnable {
     static boolean debugging = true;
     
     //variables needed to connect to the server
-    final static String SERVER_IP_ADDR = "127.0.0.1";
-    final static int SERVER_PORT_NUM = 9080;
+    
     
 //    BufferedReader input = null;
 //    BufferedReader keyboard = null;
@@ -54,6 +53,10 @@ public class ClientFXController implements Initializable, Runnable {
 //    private TextField textbox;
     @FXML
     private TextArea chatLog;
+    
+//    static BufferedReader input;
+//    static BufferedReader keyboard;
+//    static PrintWriter out;
     
     
     @Override
@@ -76,7 +79,8 @@ public class ClientFXController implements Initializable, Runnable {
         else{
             message = textField.getText();
             textField.clear();
-            chatLog.appendText("YOU: " + message + "\n");
+//            chatLog.setText("YOU: ");
+            chatLog.appendText("\n" + message);
             
             if(debugging){
                 System.out.println("Message to send= " + message);
@@ -86,27 +90,32 @@ public class ClientFXController implements Initializable, Runnable {
     
     
     public static void main(String[] args) throws IOException{
-        Socket socket = null;
-        if(debugging){
-            System.out.println("Inside initialize method in the controller.");
-        }
-        try {
-            // TODO
-            socket = new Socket(SERVER_IP_ADDR, SERVER_PORT_NUM);
-            if(debugging){System.out.println("Sucessfully connected to server");}
-        } catch (IOException ex) {
-            //Logger.getLogger(ClientFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        BufferedReader input = new BufferedReader (new InputStreamReader(socket.getInputStream()));
-        BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
-        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+        System.out.println("Inside main in controller");
         
     }
+    
+    
 
     @Override
     public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        try{
+            while(true){
+            
+            //String msg = input.readLine();
+            System.out.println("Incoming message: " );
+            //append to text area
+           
+            }   
+        }
+        //input.close();
+            //out.close();
+            //socket.close();
+        
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        
     }
     
 }

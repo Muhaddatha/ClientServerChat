@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 public class Server {
     
     
-    private static final int PORT_NUM = 9080;
+    private static final int PORT_NUM = 9070;
     static String serverTyping = ">Server: ";
     String client1Typeing = ">Client1: ";
     String client2Typeing = ">Client2: ";

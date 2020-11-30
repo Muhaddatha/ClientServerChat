@@ -9,6 +9,6 @@
    <children>
       <TextField fx:id="textField" layoutX="14.0" layoutY="415.0" prefHeight="34.0" prefWidth="249.0" promptText="Type your message here..." />
       <Button fx:id="sendButton" layoutX="279.0" layoutY="419.0" mnemonicParsing="false" onAction="#handleButton" prefHeight="25.0" prefWidth="65.0" text="Send!" textFill="#053b85" />
-      <TextArea fx:id="chatLog" layoutX="14.0" layoutY="14.0" prefHeight="393.0" prefWidth="332.0" />
+      <TextArea fx:id="chatLog" layoutX="14.0" layoutY="14.0" prefHeight="393.0" prefWidth="332.0" text="chat log will appear here..." />
    </children>
 </AnchorPane>

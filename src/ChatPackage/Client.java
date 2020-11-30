@@ -6,7 +6,10 @@
 package ChatPackage;
 
 import static ChatPackage.ClientFXController.debugging;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,6 +24,13 @@ import javafx.stage.Stage;
  * @author 3pear
  */
 public class Client extends Application {
+    
+    static BufferedReader input;
+    static BufferedReader keyboard;
+    static PrintWriter out;
+    static Socket socket;
+    final static String SERVER_IP_ADDR = "127.0.0.1";
+    final static int SERVER_PORT_NUM = 9070;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -36,6 +46,18 @@ public class Client extends Application {
     
     
     public static void main(String[] args)throws IOException{
+        System.out.println("Inside main for Client.");
+       
+            // TODO
+        socket = new Socket(SERVER_IP_ADDR, SERVER_PORT_NUM);
+        System.out.println("Successfully connected to server.");
+        
+        
+        input = new BufferedReader (new InputStreamReader(socket.getInputStream()));
+        BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
+        out = new PrintWriter(socket.getOutputStream(), true);
+        
+        
         launch(args);
     }
 }
